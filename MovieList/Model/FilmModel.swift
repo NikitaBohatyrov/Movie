@@ -7,8 +7,12 @@
 
 import Foundation
 
+struct FilmID:Equatable,Hashable{
+    let film:Film
+    let id:Int
+}
 
-struct Film:Equatable {
+struct Film:Equatable,Hashable {
     let name:String
     let year: Int
 }

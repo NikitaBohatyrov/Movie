@@ -20,21 +20,26 @@ final class ViewModel{
         }
     }
     
-    public func addFilmToTableView(name:String,year:Int){
-        if 1899...2022 ~= year && name != "" {
-            let film = Film(name: name, year: year)
+    var unsortedFilms = Set<Film>()
+    
+    public func addFilmToTableView(name:String?,year:String?){
+        if let filmName = name, name != "",
+           let year = Int(year ?? "0"){
+            let film = Film(name: filmName, year: year)
             
-            if !films.contains(where: {$0 == film}){
+            let tmpSetCount = unsortedFilms.count
+              unsortedFilms.insert(film)
+            
+            if unsortedFilms.count > tmpSetCount {
                 films.append(film)
-            }
-            else {
-                let alert = UIAlertController(title: "Whoops", message: "this film allready added.", preferredStyle: .alert)
+            }else {
+                let alert = UIAlertController(title: "Whoops", message: "film allready added", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "cancel", style: .cancel))
                 alertHandler?(alert)
             }
         }
         else {
-            let alert = UIAlertController(title: "Whoops", message: "please add existing film", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Whoops", message: "please add all info", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "cancel", style: .cancel))
             alertHandler?(alert)
         }

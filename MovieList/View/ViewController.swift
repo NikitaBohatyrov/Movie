@@ -105,15 +105,7 @@ class ViewController: UIViewController{
     }
     
     @objc func didTapButton(){
-       
-        if let name = filmNameField.text,
-           let year = Int(filmYearField.text ?? "0"){
-            viewModel.addFilmToTableView(name: name, year: year)
-        }else {
-            let alert = UIAlertController(title: "Whoops", message: "Please enter all info", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        viewModel.addFilmToTableView(name: filmNameField.text, year: filmYearField.text)
     }
 }
 
