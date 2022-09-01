@@ -24,7 +24,7 @@ final class ViewModel{
     
     public func addFilmToTableView(name:String?,year:String?){
         if let filmName = name, name != "",
-           let year = Int(year ?? "0"){
+           let year = Int(year!){
             let film = Film(name: filmName, year: year)
             
             let tmpSetCount = unsortedFilms.count
